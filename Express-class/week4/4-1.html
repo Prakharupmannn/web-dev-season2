@@ -1,0 +1,56 @@
+
+<html>
+    <script>
+        let timeout;
+        function debouncePopulateDiv() {
+            //debounce: waits for the user to stop typing for 1 second
+
+            //how can you cancel a clock?
+            // clearrTimeout ->means all the valuee will be deleted whicha are coming inside it
+            clearTimeout(timeout);
+            timeout = setTimeout(function() {
+                populateDiv2()
+            }, 100);
+        }
+
+
+        function populateDiv() {
+            //document
+            // const a = document.getElementById("firstnumber").value;
+            // const b = document.getElementById("secondnumber").value;
+
+            // const element = document.getElementById("finalSum");
+            // element.innerHTML = parseInt(a) + parseInt(b);
+
+            //fetch 
+
+                fetch("http://localhost:3000/sum?a=" + a + "&b=" + b)
+                    .then(function(response) {
+                        response.text()
+                            .then(function(ans) {
+                                document.getElementById("finalSum").innerHTML = ans;
+                            })
+                    })
+        }
+
+
+        async function populateDiv2() {
+            const a = document.getElementById("firstnumber").value;
+            const b = document.getElementById("secondnumber").value;
+
+            const response = await fetch("http://localhost:3000/sum?a=" + a + "&b=" + b)
+            const ans = await response.text();
+            document.getElementById("finalSum").innerHTML = ans;
+        }
+
+
+    </script> 
+    <body>
+        <input oninput="debouncePopulateDiv()" id="firstnumber" type="text" placeholder="First Number"></input>
+        <br><br>
+        <input oninput="debouncePopulateDiv()" id="secondnumber" type="text" placeholder="Second Number"></input>
+        <br><br>
+        <!-- <button onclick="populateDiv2()">Calculate Sum</button> <br><br> -->
+        <div id="finalSum"></div>
+    </body>
+</html>
