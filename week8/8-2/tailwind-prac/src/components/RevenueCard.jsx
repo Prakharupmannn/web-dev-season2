@@ -30,8 +30,13 @@ export const RevenueCard = ({
 
             </div> : null}
         </div>
+        <div className="flex justify-between bg-blue-900  ">
         <div>
-
+            {"Next Payment Date:"}
+        </div>
+        <div>
+            {" Today, 4:00PM"}
+        </div>
         </div>
     </div>
 }
