@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client/extension";
 const prisma = new PrismaClient();
 
 async function insertUser(email:string, password:string, firstname:string, lastName:string) {
-    const res = await prisma.user.create({
+    const res = await prisma.User.create({
         data: {
             email,
             password,
